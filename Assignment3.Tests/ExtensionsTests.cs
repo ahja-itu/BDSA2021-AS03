@@ -13,18 +13,25 @@ namespace BDSA2021.Assignment03.Tests
         {
             Assert.Equal(expected, (new Uri(url)).IsSecure());
         }
-        
+
+
+        [Theory]
+        [ClassData(typeof(WordCountData))]
+        public void WordCount_givenDataSet_shouldHoldForAll(string words, int expected)
+        {
+            Assert.Equal(expected, words.WordCount());
+        }
     }
 
+    public class WordCountData : TheoryData<string, int>
+    {
+        public WordCountData()
+        {
+            Add("Hello, World", 2);
+            Add("Hello, my name is Bob", 5);
+        }
+    }
 
-
-
-    /* 
-    
-
-    Test data class
-    
-    */
 
 
     public class IsSecureData : TheoryData<string, bool>
